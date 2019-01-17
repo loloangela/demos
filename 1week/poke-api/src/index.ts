@@ -1,5 +1,6 @@
-import express from 'express';
+import express, { NextFunction } from 'express';
 import bodyParser from 'body-parser';
+import { userRouter } from './routers/user.router';
 
 const app = express();
 
@@ -7,22 +8,24 @@ const app = express();
 app.use(bodyParser.json());
 
 // create logging middleware
+// create logging middleware
 app.use((req, res, next) => {
-  console.log(`request was made with url: ${req.url}
+  console.log(`request was made with url: ${req.path}
   and method: ${req.method}`);
   next(); // will pass the request on to search for the next piece of middleware
 })
 
+app.use('/users', userRouter);
 
-app.get('/users', (req, res) => {
-  res.send('here are your users');
-})
+// app.get('/users', (req, res) => {
+//   res.send('here are your users');
+// })
 
-app.post('/users', (req, res) => {
-  const user = req.body;
-  console.log(user)
-  res.sendStatus(201);
-})
+// app.post('/users', (req, res) => {
+//   const user = req.body;
+//   console.log(user)
+//   res.sendStatus(201);
+// })
 
 app.get('/pokemon', (req, res) => {
   res.send('here are your pokemon');
