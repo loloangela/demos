@@ -9,7 +9,7 @@ export const pokemonRouter = express.Router();
  */
 pokemonRouter.get('', (req, res) => {
   res.json(pokemon);
-})
+});
 
 /**
  * Url: /pokemon/type/:type
@@ -18,7 +18,7 @@ pokemonRouter.get('', (req, res) => {
 pokemonRouter.get('/type/:type', (req, res) => {
   const pokemonByType = pokemon.filter(poke => poke.type.includes(req.params.type));
   res.json(pokemonByType);
-})
+});
 
 /**
  * Url: /pokemon

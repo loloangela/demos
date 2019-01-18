@@ -15,7 +15,7 @@ app.use((req, res, next) => {
   console.log(`request was made with url: ${req.path}
   and method: ${req.method}`);
   next(); // will pass the request on to search for the next piece of middleware
-})
+});
 
 // set up express to attach sessions
 const sess = {
@@ -23,7 +23,7 @@ const sess = {
   cookie: { secure: false },
   resave: false,
   saveUnitialized: false
-}
+};
 // prior to this req.sesssion is nothing
 // after this req.session is an object we can store
 // any user data we want on
@@ -49,7 +49,7 @@ app.use('/pokemon', pokemonRouter);
 
 app.get('/pokemon-moves', (req, res) => {
   res.send('here are all the available pokemon moves');
-})
+});
 
-app.listen(3000); 
-console.log('application started on port: 3000')
+app.listen(3000);
+console.log('application started on port: 3000');
