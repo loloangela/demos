@@ -20,8 +20,9 @@ userRouter.get('', (req, res) => {
 // /users/:id - find by id
 userRouter.get('/:id', (req, res) => {
   console.log(req.params);
+  const idParam = +req.params.id;
                                       // +'1' - will convert to number
-  const user = users.find(ele => ele.id === +req.params.id);
+  const user = users.find(ele => ele.id === idParam);
   res.json(user);
 })
 

@@ -1,13 +1,13 @@
 import express, { NextFunction } from 'express';
 import bodyParser from 'body-parser';
 import { userRouter } from './routers/user.router';
+import { pokemonRouter } from './routers/pokemon.router';
 
 const app = express();
 
 // set up body parser to convert json body to js object and attach to req
 app.use(bodyParser.json());
 
-// create logging middleware
 // create logging middleware
 app.use((req, res, next) => {
   console.log(`request was made with url: ${req.path}
@@ -16,6 +16,7 @@ app.use((req, res, next) => {
 })
 
 app.use('/users', userRouter);
+app.use('/pokemon', pokemonRouter);
 
 // app.get('/users', (req, res) => {
 //   res.send('here are your users');
@@ -27,9 +28,9 @@ app.use('/users', userRouter);
 //   res.sendStatus(201);
 // })
 
-app.get('/pokemon', (req, res) => {
-  res.send('here are your pokemon');
-})
+// app.get('/pokemon', (req, res) => {
+//   res.send('here are your pokemon');
+// })
 
 app.get('/pokemon-moves', (req, res) => {
   res.send('here are all the available pokemon moves');
