@@ -1,5 +1,6 @@
 import express from 'express';
 import { User } from '../models/user';
+import { authMiddleware } from '../middleware/auth.middleware';
 
 let peter = new User(1,'peter', 'password', 'peter');
 let kyle = new User(2, 'kyle', 'password', 'kyle');
@@ -13,9 +14,11 @@ const users = [
 export const userRouter = express.Router();
 
 // /users - find all
-userRouter.get('', (req, res) => {
+userRouter.get('', [
+authMiddleware,
+(req, res) => {
   res.json(users);
-})
+}])
 
 // /users/:id - find by id
 userRouter.get('/:id', (req, res) => {

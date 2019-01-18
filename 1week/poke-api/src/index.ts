@@ -2,6 +2,8 @@ import express, { NextFunction } from 'express';
 import bodyParser from 'body-parser';
 import { userRouter } from './routers/user.router';
 import { pokemonRouter } from './routers/pokemon.router';
+import session from 'express-session';
+import { authRouter } from './routers/auth.router';
 
 const app = express();
 
@@ -15,6 +17,19 @@ app.use((req, res, next) => {
   next(); // will pass the request on to search for the next piece of middleware
 })
 
+// set up express to attach sessions
+const sess = {
+  secret: 'potato',
+  cookie: { secure: false },
+  resave: false,
+  saveUnitialized: false
+}
+// prior to this req.sesssion is nothing
+// after this req.session is an object we can store
+// any user data we want on
+app.use(session(sess));
+
+app.use('/auth', authRouter);
 app.use('/users', userRouter);
 app.use('/pokemon', pokemonRouter);
 
