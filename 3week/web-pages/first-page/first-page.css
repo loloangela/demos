@@ -1,0 +1,10 @@
+.pink-purple {
+  background-color: orange;
+}
+
+#my-id {
+  border: 15px solid lightgreen;
+  border-radius: 25px;
+  margin: 50px;
+  padding: 50px;
+}
