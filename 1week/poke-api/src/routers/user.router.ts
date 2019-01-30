@@ -1,7 +1,7 @@
 import express from 'express';
 import * as UserDao from '../dao/user.dao';
+import { authMiddleware } from '../middleware/auth.middleware';
 // import { User } from '../models/user';
-// import { authMiddleware } from '../middleware/auth.middleware';
 
 // const peter = new User(1, 'peter', 'password', 'peter');
 // const kyle = new User(2, 'kyle', 'password', 'kyle');
@@ -16,7 +16,7 @@ export const userRouter = express.Router();
 
 // /users - find all
 userRouter.get('', [
-  // authMiddleware,
+  authMiddleware,
   async (req, res) => {
     // res.json(users);
     try {

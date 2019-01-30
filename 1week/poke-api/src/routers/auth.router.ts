@@ -3,6 +3,7 @@ import express from 'express';
 export const authRouter = express.Router();
 
 authRouter.post('/login', (req, res) => {
+  console.log(req.body);
   if (req.body.username === 'blake' && req.body.password === 'password') {
     const user = {
       username: req.body.username,

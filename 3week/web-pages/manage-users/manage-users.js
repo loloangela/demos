@@ -1,12 +1,14 @@
 // send an http get request to the provided url
-fetch("http://localhost:3000/users")
+fetch("http://localhost:3000/users", {
+  credentials: 'include'
+})
   .then(resp => resp.json())
   .then(users => {
     console.log(users);
     // get the table body
     const tbody = document.getElementById('restaurant-table-body');
     tbody.innerHTML = '';
-    
+
     // for each user retreived from the db
     users.forEach(user => {
 
