@@ -1,9 +1,9 @@
-import express, { NextFunction } from 'express';
-import bodyParser from 'body-parser';
+import express from 'express';
 import { userRouter } from './routers/user.router';
 import { pokemonRouter } from './routers/pokemon.router';
 import session from 'express-session';
 import { authRouter } from './routers/auth.router';
+import bodyParser from 'body-parser';
 
 const app = express();
 
@@ -28,6 +28,16 @@ const sess = {
 // after this req.session is an object we can store
 // any user data we want on
 app.use(session(sess));
+
+// allow cross origins
+app.use((req, resp, next) => {
+  (process.env.MOVIE_API_STAGE === 'prod')
+    ? resp.header('Access-Control-Allow-Origin', process.env.DEMO_APP_URL)
+    : resp.header('Access-Control-Allow-Origin', `*`);
+  resp.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  resp.header('Access-Control-Allow-Credentials', 'true');
+  next();
+});
 
 app.use('/auth', authRouter);
 app.use('/users', userRouter);
