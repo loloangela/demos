@@ -43,6 +43,9 @@ app.use('/auth', authRouter);
 app.use('/users', userRouter);
 app.use('/pokemon', pokemonRouter);
 
+/**
+ * Don't do this, this was just to see if environment variables were working
+ */
 app.get('/env', (req, res) => {
   res.send(process.env.DB_URL);
 });
