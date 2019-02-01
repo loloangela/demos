@@ -43,6 +43,10 @@ app.use('/auth', authRouter);
 app.use('/users', userRouter);
 app.use('/pokemon', pokemonRouter);
 
+app.get('/env', (req, res) => {
+  res.send(process.env.DB_URL);
+});
+
 // app.get('/users', (req, res) => {
 //   res.send('here are your users');
 // })
